@@ -2,15 +2,29 @@ GET http://localhost:3000/users
 
 ###
 
+GET http://localhost:3000/users/f1ab9893-3e4b-4a9c-a725-47dce6905b2d
+
+###
+
 POST http://localhost:3000/users
 content-type: application/json
 
 {
-    "name": "Erick Machado",
-    "email": "erick3@erick3.com",
+    "name": "Erick Reis",
+    "email": "erick4@erick4.com",
     "password": "123456"
 }
 
+###
+
+PUT http://localhost:3000/users/f1ab9893-3e4b-4a9c-a725-47dce6905b2d
+content-type: application/json
+
+{
+    "id":"f1ab9893-3e4b-4a9c-a725-47dce6905b2d",
+    "name": "Erick Machado",
+    "email": "erick@machado.com"
+}
 ###
 
 GET http://localhost:3000/posts
