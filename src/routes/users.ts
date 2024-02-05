@@ -19,10 +19,10 @@ export const usersRoutes = async (app:FastifyInstance) => {
                     }
                 }
             })
-            return users; // Add missing closing parenthesis here
+            return users
         }
         const users = prisma.user.findMany();
-        return users;
+        return users
 
     })
 

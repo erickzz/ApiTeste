@@ -26,13 +26,38 @@ export const PostsRoutes = async (app: FastifyInstance) => {
         return post
     })
     
-    app.get('/posts/:id', async (request, reply) => {
-        return { hello: 'posts' }
+    app.get('/posts/:id', async (request:FastifyRequest<{Params:{id:string}}>, reply) => {
+        const id = request.params.id
+        const post = await prisma.post.findUnique({
+            where: {
+                id
+            }
+        })
+        return post
+
     })
-    app.put('/posts/:id', async (request, reply) => {
-        return { hello: 'posts' }
+    app.put('/posts/:id', async (request:FastifyRequest<{Params:{id:string},Body:Post}>, reply) => {
+        const id = request.params.id
+        const {title,content,authorId} = request.body
+        const post = await prisma.post.update({
+            where: {
+                id
+            },
+            data: {
+                title,
+                content,
+                authorId
+            }
+        })
+        return post
     })
-    app.delete('/posts/:id', async (request, reply) => {
-        return { hello: 'posts' }
+    app.delete('/posts/:id', async (request:FastifyRequest<{Params:{id:string}}>, reply) => {
+        const id = request.params.id
+        const post = await prisma.post.delete({
+            where: {
+                id
+            }
+        })
+        return post
     })
 }
