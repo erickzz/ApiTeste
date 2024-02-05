@@ -62,8 +62,20 @@ export const usersRoutes = async (app:FastifyInstance) => {
         })
         return user
     })
-    app.delete('/users/:id', async () => {
-        return {hello: 'users'}
+    app.delete('/users/:id', async (request:FastifyRequest<{Params:{id:string}}>) => {
+        const id = request.params.id
+        const deletePosts = prisma.post.deleteMany({
+            where: {
+                authorId: id
+            }
+        })
+        const deleteUser = prisma.user.delete({
+            where: {
+                id
+            }
+        })
+        const transaction = await prisma.$transaction([deletePosts, deleteUser])
+        return transaction
     })
 
 }

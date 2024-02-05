@@ -25,6 +25,11 @@ content-type: application/json
     "name": "Erick Machado",
     "email": "erick@machado.com"
 }
+
+###
+
+DELETE http://localhost:3000/users/19fe49a5-69b9-4a8d-9b6c-6815408e664f
+
 ###
 
 GET http://localhost:3000/posts
